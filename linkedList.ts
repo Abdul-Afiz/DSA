@@ -35,3 +35,79 @@
 // because if you are to search the value from the end, you will need to check each value of the arr which is determine by the no of value in the arr to find the one that match it.
 
 // */
+
+type dataType = string | number | Array<string | number | object> | object;
+
+class NodeContainer {
+  data: dataType;
+  next: null | NodeContainer;
+  constructor(data: dataType, next = null) {
+    this.data = data;
+    this.next = next;
+  }
+}
+
+class linkedList {
+  head: null | NodeContainer;
+  size: number;
+  constructor() {
+    this.head = null;
+    this.size = 0;
+  }
+
+  // insert first node
+  insertFirst(data: dataType) {
+    this.head = new NodeContainer(data, this.head as null);
+    this.size++;
+  }
+
+  // insert last node
+  insertLastNode(data: dataType) {
+    let node = new NodeContainer(data);
+    let current;
+    if (!this.head) {
+      this.head = node;
+    } else {
+      current = this.head;
+
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = node;
+    }
+  }
+
+  // insert at index
+  // get at index
+  // remove at index
+  //cler list
+
+  //   printList() {
+  //     //this represent the current variable
+  //     let current = this.head;
+
+  //     while (current) {
+  //       console.log(current);
+  //       // reassigning the next node to current, till it becomes null
+  //       current = current.next;
+  //     }
+  //   }
+  printList() {
+    let node = this.head;
+    while (node) {
+      console.log(node);
+      node = node.next;
+    }
+  }
+}
+
+const ll = new linkedList();
+
+ll.insertFirst(100);
+ll.insertFirst(200);
+ll.insertFirst(300);
+// ll.insertHead(4);
+// ll.insertHead(5);
+ll.insertLastNode(40);
+
+ll.printList();
