@@ -126,6 +126,25 @@ class linkedList {
   }
 
   // get at index
+  getAtIndex(index: number) {
+    if (index > 0 && index > this.size) {
+      return;
+    }
+
+    let current = this.head;
+    let count = 0;
+
+    while (current) {
+      if (count === index) {
+        console.log(current.data);
+      }
+      current = current.next;
+      count++;
+    }
+
+    return null;
+  }
+
   // remove at index
   //cler list
 
@@ -154,5 +173,7 @@ ll.insertLastNode(40);
 // ll.insertLastNode(50);
 // ll.insertLastNode(60);
 // ll.insertLastNode(70);
-ll.insertAt(80, 2);
-ll.printList();
+// ll.insertAt(80, 2);
+// ll.printList();
+
+ll.getAtIndex(1);
