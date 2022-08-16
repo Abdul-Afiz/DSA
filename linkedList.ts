@@ -87,6 +87,7 @@ class linkedList {
 
       // when the next node becomes null, we assign the node to the last node
       current.next = node;
+      this.size++;
     }
   }
 
@@ -94,17 +95,19 @@ class linkedList {
 
   insertAt(data: dataType, index: number) {
     // Check if the index is more than the size of the linked list
+    const node = new NodeContainer(data);
+
     if (index > 0 && index > this.size) {
       return;
     }
     //check if index === 0
     if (index === 0) {
       this.insertFirst(data);
+      return;
     }
 
     //initialise your node to a variable
 
-    const node = new NodeContainer(data);
     let current, prev, count;
 
     //Set current variable to the first node
@@ -123,6 +126,7 @@ class linkedList {
     if (prev) {
       prev.next = node;
     }
+    this.size++;
   }
 
   // get at index
@@ -136,7 +140,7 @@ class linkedList {
 
     while (current) {
       if (count === index) {
-        console.log(current.data);
+        // console.log(current.data);
       }
       current = current.next;
       count++;
@@ -146,7 +150,37 @@ class linkedList {
   }
 
   // remove at index
-  //cler list
+  removeAt(index: number) {
+    // check if the index is greater than the size
+    if (index > this.size) {
+      return;
+    }
+
+    // create a curr variable and assign it to the first node
+    let curr = this.head;
+    let prev;
+    let count = 0;
+
+    if (index === 0) {
+      this.head = curr?.next as NodeContainer;
+    } else {
+      while (index > count) {
+        prev = curr;
+        count++;
+        curr = curr?.next as NodeContainer;
+      }
+      if (prev) {
+        prev.next = curr?.next as NodeContainer;
+      }
+    }
+  }
+
+  //clear list
+
+  clearList() {
+    this.head = null;
+    this.size = 0;
+  }
 
   printList() {
     //this represent the current variable
@@ -176,4 +210,7 @@ ll.insertLastNode(40);
 // ll.insertAt(80, 2);
 // ll.printList();
 
-ll.getAtIndex(1);
+// ll.getAtIndex(1);
+ll.removeAt(0);
+// ll.clearList();
+ll.printList();
